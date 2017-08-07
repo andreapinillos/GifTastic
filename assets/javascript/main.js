@@ -22,7 +22,7 @@ function submitButtonClicked() {
 
 function searchGif(gifName) {
     $.ajax({
-            url: 'https://api.giphy.com/v1/gifs/search?q= ' + gifName + ' &api_key=b4a9605f0e4c42aeb2a6c6068f8fbde4&limit=10',
+            url: 'https://api.giphy.com/v1/gifs/search?q= ' + gifName + ' &api_key=b4a9605f0e4c42aeb2a6c6068f8fbde4&limit=10&offset=0&rating=PG-13&lang=en',
             type: 'GET',
         })
         .done(function(response) {
@@ -33,7 +33,7 @@ function searchGif(gifName) {
 function displayGif(response) {
     $('#sports').empty();
     for (var i = 0; i < response.data.length; i++) {
-        var rating = "<div class='ratings'> <b>Rating:  </b>" + (response.data[i].rating) + " </div>";
+        var rating = "<div class='ratings'> <b>Rating:  </b>" + response.data[i].rating + " </div>";
         var image = rating + '<img src= " ' + response.data[i].images.fixed_height_still.url +
             '" data-still=" ' + response.data[i].images.fixed_height_still.url +
             ' " data-animate=" ' + response.data[i].images.fixed_height.url + '" data-state="still" class="movImage" style= "width:250px; height:250px">';
